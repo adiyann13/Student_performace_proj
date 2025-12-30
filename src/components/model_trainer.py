@@ -36,7 +36,32 @@ class ModelTrainer:
                     'Gradient_boost': GradientBoostingRegressor(),
                     }
             
-            model_report:dict = evaluate_models(x_train=x_train ,y_train=y_train,x_test=x_test,y_test=y_test ,models=mods)
+            params={
+                'dtree':{
+                    'criterion':['squared_error','friedman_mse','absolute_error']
+                },
+                "Randomforest":{
+                    'n_estimators':[120,140,150]
+                },
+                'AdaBoostRegressor':{
+                    'learning_rate':[.1,.01,0.05,0.1],
+                    'n_estimators':[23,45,89,100]
+                },
+                'linear_reg':{},
+                'XGBRegressor':{
+                    'learning_rate':[.1,0.1,.05,.001],
+                    'n_estimators':[8,16,32,50,70,100]
+                },
+                'Gradient_boost':{
+                    'learning_rate':[.1,0.1,.05,.001],
+                    'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
+                    'n_estimators':[70,90,120,140]
+                }
+
+            }
+
+
+            model_report:dict = evaluate_models(x_train=x_train ,y_train=y_train,x_test=x_test,y_test=y_test ,models=mods, params=params)
 
             best_model_score = max(sorted(model_report.values()))
 
