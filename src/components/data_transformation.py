@@ -22,9 +22,9 @@ class DataTransformation:
     
     def get_data_transformation(self):
         try:
-            numric_cols = ['reading score','writing score']
-            categ_cols = ['gender', 'race/ethnicity', 'parental level of education', 'lunch',
-                            'test preparation course']
+            numric_cols = ['reading_score','writing_score']
+            categ_cols = ['gender', 'race_ethnicity', 'parental_level_of_education', 'lunch',
+                            'test_preparation_course']
             
             num_pipeline = Pipeline(
                 steps =[
@@ -58,8 +58,8 @@ class DataTransformation:
 
             preprocissing_obj = self.get_data_transformation()
 
-            target_col = 'math score'
-            numeric_cols = ['reading score','writing score']
+            target_col = 'math_score'
+            numeric_cols = ['reading_score','writing_score']
 
             indep_train_fts_df= train_df.drop(columns = [target_col], axis=1)
             dep_train_ft = train_df[target_col]

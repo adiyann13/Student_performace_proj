@@ -24,6 +24,8 @@ class DataIngestion:
             df = pd.read_csv(r'notebook\data\StudentsPerformance (1).csv')
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
 
+            df.rename(columns={'race/ethnicity':'race_ethnicity' , 'parental level of education':'parental_level_of_education','test preparation course':'test_preparation_course','math score':'math_score','reading score':'reading_score','writing score':'writing_score'})
+
             df.to_csv(self.ingestion_config.raw_data, index=False,header=True)
 
             train_data ,test_data = train_test_split(df,test_size=0.2,random_state=42)
